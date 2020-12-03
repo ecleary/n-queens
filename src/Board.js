@@ -186,6 +186,22 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      /*
+      // Define flag equal to false
+      // Define diagonals variable equal to empty array
+      // Iterate over first row in chessboard for(var i=0; i < this.attributes.n; i++)
+        // Add empty array to diagonals name currentDiagonal
+        // Start a loop with a number of iterations equal to n minus current square index (n - i) (j)
+          // <Grab each square in the current diagonal> this.attributes[j][i+j];
+          // Push square value into currentDiagonal
+      // Iterate over first column in chessboard for(var i=0; i < this.attributes.n; i++)
+        // Add empty array to diagonals name currentDiagonal
+        // Start a loop with a number of iterations equal to n minus current square index (n - i) (j)
+          // <Grab each square in the current diagonal> this.attributes[i+j][j];
+      // Reuse code from previous methods to check arrays in diagonals array for conflicts
+        // ...
+      // Return flag
+      */
       return false; // fixme
     },
 
