@@ -62,7 +62,7 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -84,7 +84,39 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      //no input
+      //returns a boolean
+      //true if there is a conflict, false if there isn't
+      //we need to confirm how we are accessing the "rows"
+
+      //we will look through each row to find conflicts
+      //return true once we see a conflict
+
+      //create flag that stores boolean, returns it at the end of the function
+      var flag = false;
+      _.each(this.attributes, function(value, key) {
+        if (Array.isArray(value)) {
+          var piecefound = false;
+          _.each(value, function(square) {
+            if (square === 1 && piecefound === true) {
+              flag = true;
+            } else if (square === 1) {
+              piecefound = true;
+            }
+          });
+        }
+        return flag;
+      });
+      //iterate over the outer array of board
+      //  are any 2 values in the current array 1.
+      //  create a variable to keep track of repeats of 1. default equals false
+      //  iterate over the inner array
+      //  if (current value === 1 && repeats === true)
+      //    flag = true;
+      //  otherwise if (currentvalue === 1)
+      //  repeatflag = true;
+
+      return flag; // fixme
     },
 
 
