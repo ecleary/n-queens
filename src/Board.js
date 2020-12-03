@@ -105,7 +105,6 @@
             }
           });
         }
-        return flag;
       });
       //iterate over the outer array of board
       //  are any 2 values in the current array 1.
@@ -131,7 +130,48 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      // High level
+      // turn rows into columns using for loop
+      /*
+      // Pseudocode
+      // Define flag and set to false
+      // Define empty array and store as storageArray
+      //
+      // var i = 0; i < this.attributes.n; i++
+        // define storageArray at i equals an empty array
+        // var j = 0; j < this.attributes.n; j++
+          // storageArray at i at j will equal this.attributes at i at j
+      // Iterate over storageArray
+        // Create pieceFound flag set to false
+        // Iterate over values of each single array
+          // If square is 1 and if pieceFound is true
+            // Set flag to true
+          // Otherwise if square is 1
+            // Set pieceFound to true
+      // Return flag
+      */
+
+      var flag = false;
+      var storageArray = [];
+      for (var i = 0; i < this.attributes.n; i++) {
+        storageArray[i] = [];
+        for (var j = 0; j < this.attributes.n; j++) {
+          storageArray[i][j] = this.attributes[j][i];
+        }
+      }
+      _.each(storageArray, function(value, key) {
+        if (Array.isArray(value)) {
+          var piecefound = false;
+          _.each(value, function(square) {
+            if (square === 1 && piecefound === true) {
+              flag = true;
+            } else if (square === 1) {
+              piecefound = true;
+            }
+          });
+        }
+      });
+      return flag; // fixme
     },
 
 
