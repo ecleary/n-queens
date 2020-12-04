@@ -245,7 +245,37 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      var flag = false;
+      var diagonals = [];
+      for (var i = this.attributes.n - 1; i >= 0; i--) {
+        var currentDiagonal = [];
+        for (var j = 0; j <= i; j++) {
+          currentDiagonal.push(this.attributes[j][i - j]);
+        }
+        diagonals.push(currentDiagonal);
+      }
+      for (var i = 0; i < this.attributes.n; i++) {
+        var currentDiagonal = [];
+        var count = 0;
+        for (var j = this.attributes.n - 1; j >= i; j--) {
+          currentDiagonal.push(this.attributes[i + count][j]);
+          count++;
+        }
+        diagonals.push(currentDiagonal);
+      }
+      _.each(diagonals, function(value, key) {
+        if (Array.isArray(value)) {
+          var piecefound = false;
+          _.each(value, function(square) {
+            if (square === 1 && piecefound === true) {
+              flag = true;
+            } else if (square === 1) {
+              piecefound = true;
+            }
+          });
+        }
+      });
+      return flag;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
