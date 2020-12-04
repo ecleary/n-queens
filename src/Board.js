@@ -209,7 +209,27 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var flag = false;
+      var diagonals = [];
+      var currentDiagonal = [];
+      var i = majorDiagonalColumnIndexAtFirstRow;
+      for (var j = 0; j < this.attributes.n - i; j++) {
+        currentDiagonal.push(this.attributes[j][i + j]);
+      }
+      diagonals.push(currentDiagonal);
+      _.each(diagonals, function(value, key) {
+        if (Array.isArray(value)) {
+          var piecefound = false;
+          _.each(value, function(square) {
+            if (square === 1 && piecefound === true) {
+              flag = true;
+            } else if (square === 1) {
+              piecefound = true;
+            }
+          });
+        }
+      });
+      return flag;
     },
 
     // test if any major diagonals on this board contain conflicts
@@ -268,7 +288,27 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var flag = false;
+      var diagonals = [];
+      var currentDiagonal = [];
+      var i = minorDiagonalColumnIndexAtFirstRow;
+      for (var j = 0; j <= i; j++) {
+        currentDiagonal.push(this.attributes[j][i - j]);
+      }
+      diagonals.push(currentDiagonal);
+      _.each(diagonals, function(value, key) {
+        if (Array.isArray(value)) {
+          var piecefound = false;
+          _.each(value, function(square) {
+            if (square === 1 && piecefound === true) {
+              flag = true;
+            } else if (square === 1) {
+              piecefound = true;
+            }
+          });
+        }
+      });
+      return flag;
     },
 
     // test if any minor diagonals on this board contain conflicts
